@@ -1,2 +1,1 @@
-# oliver427.github.io
-The main page
+# yeah that one project I have to do
