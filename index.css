@@ -3,10 +3,12 @@ html {
     font-family: Ubuntu Mono;
     font-size: 1.1vw;
     color: white;
+    user-select: none;
 }
 pre {
     font-size: 1.1vw;
     color: white;
+    margin-top: -1vw;
 }
 p {
     font-size: 1.1vw;
@@ -25,6 +27,7 @@ p {
     overflow-x: hidden;
     overflow-y: scroll;
     flex-direction: column;
+    filter: drop-shadow(0vw 0vw 0.7vw black);
 }
 #input {
     background-color: rgba(0, 0, 0, 0);
@@ -37,7 +40,7 @@ p {
     font-size: 1.1vw;
     width: 85%;
     height: 1.1vw;
-    margin-top: 1.1vw;
+    margin-top: -1vw;
     margin-left: 1vw;
     overflow-wrap: break-word;
     padding-bottom: 100%;
@@ -52,7 +55,7 @@ p {
     font-size: 1.1vw;
     width: 85%;
     height: 1.1vw;
-    margin-top: 1.1vw;
+    margin-top: -1vw;
     margin-left: 1vw;
     overflow-wrap: break-word;
 }
@@ -63,11 +66,14 @@ p {
 span {
     color:#FFFC31;
     font-size: 1.1vw;
+    margin-top: -1vw;
 }
 #dir {
     /* background-color: blue; */
     color: #64E9EE;
     font-size: 1.1vw;
+    margin-top: -1vw;
+
 }
 #inputCon {
     display: flex;
