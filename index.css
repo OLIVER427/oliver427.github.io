@@ -1,38 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 html {
     background-color: #001011;
     font-family: Ubuntu Mono;
     font-size: 1.1vw;
     color: white;
     user-select: none;
-    /* filter: hue-rotate(90deg) invert(100%) saturate(200%); */
+    /* filter: hue-rotate(90deg) invert(100%) saturate(500%); /* light mode */
+    /*filter: hue-rotate(90deg) saturate(100%) sepia(2000%); /* sepia mode */
+    transition-property: filter;
+    transition-duration: 100ms;
 }
+
 pre {
     font-size: 1.1vw;
     color: white;
     margin-top: -1vw;
     font-family: Ubuntu Mono;
 }
+
 p {
     font-size: 1.1vw;
     color: white;
     font-family: Ubuntu Mono;
 }
+
 a {
     color: #3AAFB9;
 }
+
 #userAgent {
     color: white !important;
 }
+
 #window {
     background-color: black;
     width: 69vw;
-    height:39vw;
+    height: 39vw;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     outline: rgb(40, 40, 40) 0.1vw solid;
     top: 50%;
-    left: 50%;  
+    left: 50%;
     padding-left: 0.5vw;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -40,9 +49,10 @@ a {
     filter: drop-shadow(0vw 0vw 0.7vw black);
     overscroll-behavior: none;
 }
+
 #titleBar {
     position: sticky;
-    width:70vw;
+    width: 70vw;
     height: 2vw;
     background-color: rgb(40, 40, 40);
     z-index: 200;
@@ -50,6 +60,7 @@ a {
     top: 0;
     cursor: not-allowed;
 }
+
 #input {
     background-color: rgba(0, 0, 0, 0);
     /* background-color: red; */
@@ -66,6 +77,7 @@ a {
     overflow-wrap: break-word;
     padding-bottom: 20%;
 }
+
 #output {
     background-color: rgba(0, 0, 0, 0);
     /* background-color: red; */
@@ -82,15 +94,18 @@ a {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 #outputIn {
     display: flex;
     flex-direction: row;
 }
+
 span {
-    color:#FFFC31;
+    color: #FFFC31;
     font-size: 1.1vw;
     margin-top: -1vw;
 }
+
 #dir {
     /* background-color: blue; */
     color: #64E9EE;
@@ -98,6 +113,7 @@ span {
     margin-top: -1vw;
 
 }
+
 #dir1 {
     /* background-color: blue; */
     color: #64E9EE;
@@ -105,10 +121,12 @@ span {
     margin-top: -1vw;
 
 }
+
 #inputCon {
     display: flex;
     flex-direction: row;
 }
+
 #outputCon {
     display: flex;
     flex-direction: column;
