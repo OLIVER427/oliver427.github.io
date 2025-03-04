@@ -9,10 +9,16 @@ pre {
     font-size: 1.1vw;
     color: white;
     margin-top: -1vw;
+    font-family: Ubuntu Mono;
 }
 p {
     font-size: 1.1vw;
     color: white;
+    font-family: Ubuntu Mono;
+
+}
+#userAgent {
+    color: white !important;
 }
 #window {
     background-color: black;
@@ -28,6 +34,16 @@ p {
     overflow-y: scroll;
     flex-direction: column;
     filter: drop-shadow(0vw 0vw 0.7vw black);
+}
+#titleBar {
+    position: sticky;
+    width:70vw;
+    height: 2vw;
+    background-color: rgb(40, 40, 40);
+    z-index: 200;
+    margin-left: -1vw;
+    top: 0;
+
 }
 #input {
     background-color: rgba(0, 0, 0, 0);
