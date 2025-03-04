@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 html {
     background-color: #001011;
     font-family: Ubuntu Mono;
     font-size: 1.1vw;
     color: white;
     user-select: none;
+    font-weight: 400px !important;
 }
 pre {
     font-size: 1.1vw;
@@ -15,7 +17,9 @@ p {
     font-size: 1.1vw;
     color: white;
     font-family: Ubuntu Mono;
-
+}
+a {
+    color: #3AAFB9;
 }
 #userAgent {
     color: white !important;
@@ -24,7 +28,7 @@ p {
     background-color: black;
     width: 69vw;
     height:39vw;
-    position:fixed;
+    position: absolute;
     transform: translate(-50%,-50%);
     outline: rgb(40, 40, 40) 0.1vw solid;
     top: 50%;
@@ -43,7 +47,7 @@ p {
     z-index: 200;
     margin-left: -1vw;
     top: 0;
-
+    cursor: not-allowed;
 }
 #input {
     background-color: rgba(0, 0, 0, 0);
@@ -73,7 +77,9 @@ p {
     height: 1.1vw;
     margin-top: -1vw;
     margin-left: 1vw;
-    overflow-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #outputIn {
     display: flex;
