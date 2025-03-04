@@ -5,7 +5,7 @@ html {
     font-size: 1.1vw;
     color: white;
     user-select: none;
-    font-weight: 400px !important;
+    /* filter: hue-rotate(90deg) invert(100%) saturate(200%); */
 }
 pre {
     font-size: 1.1vw;
@@ -38,6 +38,7 @@ a {
     overflow-y: scroll;
     flex-direction: column;
     filter: drop-shadow(0vw 0vw 0.7vw black);
+    overscroll-behavior: none;
 }
 #titleBar {
     position: sticky;
@@ -63,7 +64,7 @@ a {
     margin-top: -1vw;
     margin-left: 1vw;
     overflow-wrap: break-word;
-    padding-bottom: 100%;
+    padding-bottom: 20%;
 }
 #output {
     background-color: rgba(0, 0, 0, 0);
@@ -91,6 +92,13 @@ span {
     margin-top: -1vw;
 }
 #dir {
+    /* background-color: blue; */
+    color: #64E9EE;
+    font-size: 1.1vw;
+    margin-top: -1vw;
+
+}
+#dir1 {
     /* background-color: blue; */
     color: #64E9EE;
     font-size: 1.1vw;
