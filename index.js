@@ -23,7 +23,7 @@ let startText = [
     `<span id="userAgent"></span>`,
     "Copyright (c) 2025 OLIVER427",
     "    ",
-    "Use the 'help' command for info on how to use this site.",
+    "Use the 'help' command for info on how to use this.",
     "    ",
 
 ]
@@ -62,21 +62,38 @@ document.addEventListener('keydown', (event) => {
         prevCommand = document.getElementById("input").innerHTML
         document.getElementById("outputCon").innerHTML += `<div id='outputIn'><p id="dir">usr@website <span>$</span> </p>
         <div id="output" contenteditable="false" spellcheck="false">`+ prevCommand + `</div></div>`
-        history.push(prevCommand)
-        historyNum = history.length
+        if (prevCommand.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim() !== "") {
+            history.push(prevCommand)
+            historyNum = history.length
+        }
 
         switch (prevCommand.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()) {
             case "help": //help for list of commands
                 lines = [
+                    `history`,
+                    `   run 'history display' to display command history`,
+                    // `   run 'history clear' to clear command history`,
+                    ` `,
                     `learn [project_name]`,
                     `   run 'learn list' for list of projects`,
                     ` `,
                     `theme [theme_name]`,
-                    `   run 'theme list' for list of color themes`
+                    `   run 'theme list' for list of color themes`,
                 ]
                 command(lines)
                 break;
 
+            case "history":
+                lines = [
+                    `No parameter specified`,
+                    `   run 'history display' to display command history`,
+                    // `   run 'history clear' to clear command history`,
+                ]
+                command(lines)
+                break;
+            case "history display":
+                command(history)
+                break;
 
             case "theme":
                 lines = [
@@ -208,6 +225,9 @@ document.addEventListener('keydown', (event) => {
         // document.getElementById("input").setSelectionRange(document.getElementById("input").innerHTML.length, document.getElementById("input").innerHTML.length);
         justPressedDown = false
         // console.log(historyNum)
+        document.getElementById("input").focus()
+        document.execCommand('selectAll', false, null); //execCommand is depricated, but I cant find any other solutions.
+        document.getSelection().collapseToEnd();
     }
     if (event.key === "ArrowDown") {
         event.preventDefault();
@@ -224,6 +244,9 @@ document.addEventListener('keydown', (event) => {
         }
         justPressedDown = true
         // console.log(historyNum)
+        document.getElementById("input").focus()
+        document.execCommand('selectAll', false, null); //execCommand is depricated, but I cant find any other solutions.
+        document.getSelection().collapseToEnd();
     }
 })
 
@@ -237,4 +260,3 @@ if (document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replace
 requestAnimationFrame(animationFrame);
 }
 animationFrame();
-
