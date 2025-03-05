@@ -1,5 +1,8 @@
 let prevCommand
 let lines
+let history = []
+let historyNum = 0
+let justOpened = true //for things that should only run at the beginning.
 
 setTimeout(() => {
     console.log("Hi there! ignore the 'cant access property innerHTML' errors, those are just gonna have to be there.")
@@ -17,7 +20,7 @@ let startText = [
     "    ",
     "    ",
     "    ",
-    "<span id='userAgent'></span>",
+    `<span id="userAgent"></span>`,
     "Copyright (c) 2025 OLIVER427",
     "    ",
     "Use the 'help' command for info on how to use this site.",
@@ -27,7 +30,6 @@ let startText = [
 
 // function that makes the lines go down smoothly on start of page
 for (let i = 0; i < startText.length; i++) {
-    // console.log("test")
     setTimeout(() => {
         document.getElementById("outputCon").innerHTML += `
                 <pre>
@@ -45,8 +47,8 @@ function command(array) { // function that makes the lines go down smoothly
             document.getElementById("outputCon").innerHTML += `
             <pre>
 `+ array[i] + `</pre>`
+document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
         }, i * timer);
-        document.getElementById("dir").scrollIntoView({ behavior: "instant", block: "start" });
     }
     return 1
 }
@@ -54,9 +56,14 @@ function command(array) { // function that makes the lines go down smoothly
 
 document.addEventListener('keydown', (event) => {
     if (event.key == "Enter") {
+        if (justOpened === true) {
+            justOpened = false
+        }
         prevCommand = document.getElementById("input").innerHTML
-        document.getElementById("outputCon").innerHTML += `<div id='outputIn'><p id="dir1">usr@website <span>$</span> </p>
+        document.getElementById("outputCon").innerHTML += `<div id='outputIn'><p id="dir">usr@website <span>$</span> </p>
         <div id="output" contenteditable="false" spellcheck="false">`+ prevCommand + `</div></div>`
+        history.push(prevCommand)
+        historyNum = history.length
 
         switch (prevCommand.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()) {
             case "help": //help for list of commands
@@ -164,7 +171,7 @@ document.addEventListener('keydown', (event) => {
 
 
             case "": //nothing here so theres no "command not found" for an empty message
-                document.getElementById("dir").scrollIntoView({ behavior: "instant", block: "start" });
+                document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
                 break;
 
             default:
@@ -185,5 +192,49 @@ document.addEventListener('keydown', (event) => {
         }, 1);
 
     }
+
+    // the following lines save history
+    let justPressedDown = false
+    if (event.key === "ArrowUp") {
+        event.preventDefault();
+        if (justOpened === true && history.length == 0) {
+            return;
+        } else if (historyNum > 0 && justPressedDown == true){
+            historyNum--
+        } else if (historyNum > 0 && justPressedDown == false){
+            historyNum--
+        }
+        document.getElementById("input").innerHTML = history[historyNum]
+        // document.getElementById("input").setSelectionRange(document.getElementById("input").innerHTML.length, document.getElementById("input").innerHTML.length);
+        justPressedDown = false
+        // console.log(historyNum)
+    }
+    if (event.key === "ArrowDown") {
+        event.preventDefault();
+        if (historyNum < history.length && justPressedDown == false){
+            historyNum++
+        } else if (historyNum < history.length-1 && justPressedDown == true){
+        historyNum++
+        }
+
+        if (historyNum === history.length && justPressedDown == false) {
+            document.getElementById("input").innerHTML = ""
+        } else {
+            document.getElementById("input").innerHTML = history[historyNum]
+        }
+        justPressedDown = true
+        // console.log(historyNum)
+    }
 })
+
+function animationFrame() {//a loop but cooler
+//dynamic title
+if (document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim().length === 0) {
+    document.title = "usr@website $"
+} else {
+    document.title = "$ " + document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()
+}
+requestAnimationFrame(animationFrame);
+}
+animationFrame();
 
