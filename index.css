@@ -30,7 +30,8 @@ a {
 }
 
 #userAgent {
-    color: white !important;
+    /* color: white !important; */
+    color:inherit;
 }
 
 #window {
@@ -122,4 +123,8 @@ span {
 #outputCon {
     display: flex;
     flex-direction: column;
+}
+
+.outText {
+    color:inherit;
 }

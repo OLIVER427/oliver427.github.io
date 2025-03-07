@@ -3,6 +3,11 @@ let lines
 let history = []
 let historyNum = 0
 let justOpened = true //for things that should only run at the beginning.
+let commandRunning = false
+let mode
+let color = 1
+
+document.getElementById("input").focus()
 
 setTimeout(() => {
     console.log("Hi there! ignore the 'cant access property innerHTML' errors, those are just gonna have to be there.")
@@ -32,7 +37,7 @@ let startText = [
 for (let i = 0; i < startText.length; i++) {
     setTimeout(() => {
         document.getElementById("outputCon").innerHTML += `
-                <pre>
+                <pre class='outText'>
 `+ startText[i] + `</pre>`
         document.getElementById("userAgent").innerHTML = navigator.userAgent
     }, i * 25);
@@ -40,14 +45,22 @@ for (let i = 0; i < startText.length; i++) {
 
 function command(array) { // function that makes the lines go down smoothly
     let timer = 25
+    document.getElementById("input").contentEditable = "false"
+    commandRunning = true
     array.push(" ")
     for (let i = 0; i < array.length; i++) {
         // console.log("test")
         setTimeout(() => {
             document.getElementById("outputCon").innerHTML += `
-            <pre>
+            <pre class='outText'>
 `+ array[i] + `</pre>`
 document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
+
+if (i == array.length-1) {
+    commandRunning = false
+    document.getElementById("input").contentEditable = "true"
+    document.getElementById("input").focus()
+}
         }, i * timer);
     }
     return 1
@@ -55,7 +68,7 @@ document.getElementById("input").scrollIntoView({ behavior: "instant", block: "s
 
 
 document.addEventListener('keydown', (event) => {
-    if (event.key == "Enter") {
+    if (event.key == "Enter" && commandRunning == false) {
         if (justOpened === true) {
             justOpened = false
         }
@@ -86,15 +99,15 @@ document.addEventListener('keydown', (event) => {
             case "history":
                 lines = [
                     `No parameter specified`,
-                    `   run 'history display' to display command history`,
+                    `   run 'history display' to display command history`
                     // `   run 'history clear' to clear command history`,
                 ]
                 command(lines)
                 break;
             case "history display":
-                command(history)
+                lines = history
+                command(lines)
                 break;
-
             case "theme":
                 lines = [
                     `No theme specified`,
@@ -133,8 +146,16 @@ document.addEventListener('keydown', (event) => {
                 ]
                 command(lines)
                 break;
+            case "gay":
+            lines = [
+                `lmao this is awesome`,
+                // `<span style="font-size:5.13vw">DEAN, WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</span>`
+            ]
 
-
+            document.getElementById("outputCon").style.color = "lime"
+            mode = "gay"
+            command(lines)
+            break;
             case "learn": // the beginning of the learn commands
                 lines = [
                     `No project specified.`,
@@ -186,7 +207,6 @@ document.addEventListener('keydown', (event) => {
 
 
 
-
             case "": //nothing here so theres no "command not found" for an empty message
                 document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
                 break;
@@ -212,7 +232,7 @@ document.addEventListener('keydown', (event) => {
 
     // the following lines save history
     let justPressedDown = false
-    if (event.key === "ArrowUp") {
+    if (event.key === "ArrowUp" && commandRunning == false) {
         event.preventDefault();
         if (justOpened === true && history.length == 0) {
             return;
@@ -250,12 +270,25 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
-function animationFrame() {//a loop but cooler
+function animationFrame() { //a loop but cooler
+
 //dynamic title
 if (document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim().length === 0) {
     document.title = "usr@website $"
 } else {
     document.title = "$ " + document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()
+}
+
+if (commandRunning == true) {
+    
+} else {
+
+}
+
+
+if (mode == "gay") {
+    color+=20
+    document.getElementById("html").style.filter = "hue-rotate("+ color +"deg) saturate(20000%) sepia(20%)"
 }
 requestAnimationFrame(animationFrame);
 }
