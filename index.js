@@ -6,6 +6,7 @@ let justOpened = true //for things that should only run at the beginning.
 let commandRunning = false
 let mode
 let color = 1
+let lineTimer = 25
 
 document.getElementById("input").focus()
 
@@ -44,7 +45,7 @@ for (let i = 0; i < startText.length; i++) {
 }
 
 function command(array) { // function that makes the lines go down smoothly
-    let timer = 25
+
     document.getElementById("input").contentEditable = "false"
     commandRunning = true
     array.push(" ")
@@ -54,15 +55,16 @@ function command(array) { // function that makes the lines go down smoothly
             document.getElementById("outputCon").innerHTML += `
             <pre class='outText'>
 `+ array[i] + `</pre>`
-document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
+            document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
 
-if (i == array.length-1) {
-    commandRunning = false
-    document.getElementById("input").contentEditable = "true"
-    document.getElementById("input").focus()
-}
-        }, i * timer);
+            if (i == array.length - 1) {
+                commandRunning = false
+                document.getElementById("input").contentEditable = "true"
+                document.getElementById("input").focus()
+            }
+        }, i * lineTimer);
     }
+    lineTimer = 25
     return 1
 }
 
@@ -83,15 +85,37 @@ document.addEventListener('keydown', (event) => {
         switch (prevCommand.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()) {
             case "help": //help for list of commands
                 lines = [
+                    `newgrounds`,
+                    `   I put music on Newgrounds sometimes, this links you there.`,
+                    ` `,
+                    `youtube`,
+                    `   I upload content on YouTube a little, this links you to my channel.`,
+                    ` `,
                     `history`,
                     `   run 'history display' to display command history`,
                     // `   run 'history clear' to clear command history`,
                     ` `,
-                    `learn [project_name]`,
-                    `   run 'learn list' for list of projects`,
+                    `learn [project_name/creation_name]`,
+                    `   run 'learn list' for list of projects and other things`,
                     ` `,
                     `theme [theme_name]`,
                     `   run 'theme list' for list of color themes`,
+                ]
+                command(lines)
+                break;
+
+            case "newgrounds":
+                lines = [
+                    `I usually make chiptune sounding remakes of video game songs,`,
+                    `you can check them out on my Newgrounds page here! <a href="https://oliver427.newgrounds.com/" target='_0'>https://oliver427.newgrounds.com/</a>`,
+                ]
+                command(lines)
+                break;
+
+            case "youtube":
+                lines = [
+                    `I make videos on YouTube sometimes, mostly about Geometry Dash or Minecraft, but other games and unrelated things as well.`,
+                    `I have a lot of fun making those videos, and you can check them out here! <a href="https://www.youtube.com/@OLIVER427" target='_0'>https://www.youtube.com/@OLIVER427</a>`
                 ]
                 command(lines)
                 break;
@@ -147,15 +171,16 @@ document.addEventListener('keydown', (event) => {
                 command(lines)
                 break;
             case "gay":
-            lines = [
-                `lmao this is awesome`,
-                // `<span style="font-size:5.13vw">DEAN, WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</span>`
-            ]
-
-            document.getElementById("outputCon").style.color = "lime"
-            mode = "gay"
-            command(lines)
-            break;
+                lines = [
+                    `Theme has been successfully set to 'Super epic rainbow cool awesome theme'`,
+                    `[WARNING]: This feature is EXPERIMENTAL and will not persist beyond page reload`,
+                    // `<span style="font-size:5.13vw">DEAN, WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</span>`
+                ]
+                document.getElementById("outputCon").style.color = "lime"
+                mode = "rainbow"
+                command(lines)
+                break;
+                
             case "learn": // the beginning of the learn commands
                 lines = [
                     `No project specified.`,
@@ -166,24 +191,24 @@ document.addEventListener('keydown', (event) => {
             case "learn list":
                 lines = [
                     "Project names:",
-                    "    - gd_levelloader",
-                    "    - gd_levelloaderv2",
+                    "    - levelloader",
+                    "    - levelloader2",
                     "    - switch-menu-web",
                     "    - terminal-website"
                 ]
                 command(lines)
                 break;
-            case "learn gd_levelloader":
+            case "learn levelloader":
                 lines = [
                     `"Geometry Dash Level Loader" is a low quality, attempted recreation (by <a href='https://github.com/OLIVER427' target='_0'>OLIVER427</a> and <a href='https://github.com/Blockhead66' target='_0'>Blockhead66</a>) of the game `,
                     `"Geometry Dash", by RobTopGames. This project was started in late 2023, and abandoned soon after beginning. The project`,
                     `was picked up again, and given some new menus before "finishing" the project on December 19th 2024. Geometry Dash`,
                     `Level Loader V2 (which is expected to be a higher quality recreation) went into development shortly after the end of V1's.`,
-                    `it is now viewable on Github here: <a href='https://github.com/OLIVER427/GD-LevelLoaderJS' target='_0'>https://github.com/OLIVER427/GD-LevelLoaderJS</a>`,
+                    `it is now viewable on Github here: <a href='https://github.com/OLIVER427/GD-LevelLoaderJS' target='0'>https://github.com/OLIVER427/GD-LevelLoaderJS</a>`,
                 ]
                 command(lines)
                 break;
-            case "learn gd_levelloaderv2":
+            case "learn levelloader2":
                 lines = [
                     ``,
                 ]
@@ -191,7 +216,10 @@ document.addEventListener('keydown', (event) => {
                 break;
             case "learn switch-menu-web":
                 lines = [
-                    `Basically, its the Switch menu, but in a web browser.`,
+                    `Basically, its the Switch menu, but in a web browser. All of the images you see in that website`,
+                    `(excluding the game cover arts) were recreated by me since none of them are on the internet anywhere.`,
+                    `The CSS was probably the hardest part of this for me to do, its probably pretty messy, but you can check`,
+                    `out the whole project on Github here: <a href='https://github.com/OLIVER427/Switch-Menu-Web' target='0'>https://github.com/OLIVER427/Switch-Menu-Web</a>`,
                 ]
                 command(lines)
                 break;
@@ -205,8 +233,22 @@ document.addEventListener('keydown', (event) => {
                 command(lines)
                 break;
 
+            case "whoami":
+                lines = [
+                    `Well since I cant tell who you are, I have no idea. your... uhhhh, you? yeah that sounds about right.`,
+                    `actually it says that your name is "usr" but that doesnt sound very human to me.`
+                ]
+                command(lines)
+                break;
 
-
+            case "ls":
+            case "cd":
+                lines = [
+                    `The command "` + prevCommand + `" has not been implemented yet.`
+                ]
+                command(lines)
+                break;
+            
             case "": //nothing here so theres no "command not found" for an empty message
                 document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
                 break;
@@ -236,9 +278,9 @@ document.addEventListener('keydown', (event) => {
         event.preventDefault();
         if (justOpened === true && history.length == 0) {
             return;
-        } else if (historyNum > 0 && justPressedDown == true){
+        } else if (historyNum > 0 && justPressedDown == true) {
             historyNum--
-        } else if (historyNum > 0 && justPressedDown == false){
+        } else if (historyNum > 0 && justPressedDown == false) {
             historyNum--
         }
         document.getElementById("input").innerHTML = history[historyNum]
@@ -251,10 +293,10 @@ document.addEventListener('keydown', (event) => {
     }
     if (event.key === "ArrowDown") {
         event.preventDefault();
-        if (historyNum < history.length && justPressedDown == false){
+        if (historyNum < history.length && justPressedDown == false) {
             historyNum++
-        } else if (historyNum < history.length-1 && justPressedDown == true){
-        historyNum++
+        } else if (historyNum < history.length - 1 && justPressedDown == true) {
+            historyNum++
         }
 
         if (historyNum === history.length && justPressedDown == false) {
@@ -272,24 +314,24 @@ document.addEventListener('keydown', (event) => {
 
 function animationFrame() { //a loop but cooler
 
-//dynamic title
-if (document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim().length === 0) {
-    document.title = "usr@website $"
-} else {
-    document.title = "$ " + document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()
-}
+    //dynamic title
+    if (document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim().length === 0) {
+        document.title = "usr@website $"
+    } else {
+        document.title = "$ " + document.getElementById("input").innerHTML.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()
+    }
 
-if (commandRunning == true) {
-    
-} else {
+    if (commandRunning == true) {
 
-}
+    } else {
+
+    }
 
 
-if (mode == "gay") {
-    color+=20
-    document.getElementById("html").style.filter = "hue-rotate("+ color +"deg) saturate(20000%) sepia(20%)"
-}
-requestAnimationFrame(animationFrame);
+    if (mode == "rainbow") {
+        color += 12
+        document.getElementById("html").style.filter = "hue-rotate(" + color + "deg) saturate(20000%) sepia(20%)"
+    }
+    requestAnimationFrame(animationFrame);
 }
 animationFrame();
