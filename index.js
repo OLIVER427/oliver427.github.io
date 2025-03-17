@@ -100,13 +100,16 @@ document.addEventListener('keydown', (event) => {
                     ` `,
                     `theme [theme_name]`,
                     `   run 'theme list' for list of color themes`,
+                    ` `,
+                    //`iamapersonwhocannotfigureouthowtouseaterminalbecauseionlyusewindowspleasehelpme`,
+                    //`   um...`
                 ]
                 command(lines)
                 break;
 
             case "newgrounds":
                 lines = [
-                    `I usually make chiptune sounding remakes of video game songs,`,
+                    `I usually make chiptune sounding remakes of video game songs, and`,
                     `you can check them out on my Newgrounds page here! <a href="https://oliver427.newgrounds.com/" target='_0'>https://oliver427.newgrounds.com/</a>`,
                 ]
                 command(lines)
@@ -193,8 +196,8 @@ document.addEventListener('keydown', (event) => {
                     "Project names:",
                     "    - levelloader",
                     "    - levelloader2",
-                    "    - switch-menu-web",
-                    "    - terminal-website"
+                    "    - switchmenu",
+                    "    - webterminal",
                 ]
                 command(lines)
                 break;
@@ -210,41 +213,55 @@ document.addEventListener('keydown', (event) => {
                 break;
             case "learn levelloader2":
                 lines = [
-                    ``,
+                    `"Geometry Dash Level Loader V2" is an attempted recreation (by <a href='https://github.com/OLIVER427' target='_0'>OLIVER427</a> and <a href='https://github.com/Blockhead66' target='_0'>Blockhead66</a>) of the game `,
+                    `"Geometry Dash", by RobTopGames. I helped start this project in late 2024, and unlike before, it seems like`,
+                    `this recreation might not be as inaccurate. So far, my job has been to work on the menu screens, such as the`,
+                    `title screen, level select screen, search menu, etc. It probably won't be released for a very long time, but`,
+                    `you can watch the tiny little sneak peek video I posted on YouTube: <a href='https://www.youtube.com/watch?v=mVNlV4SU1W4' target='_0'>https://www.youtube.com/watch?v=mVNlV4SU1W4</a>`,
                 ]
                 command(lines)
                 break;
-            case "learn switch-menu-web":
+            case "learn switchmenu":
                 lines = [
-                    `Basically, its the Switch menu, but in a web browser. All of the images you see in that website`,
+                    `Basically, its the Switch menu, but made for a web browser. All of the images you see in that website`,
                     `(excluding the game cover arts) were recreated by me since none of them are on the internet anywhere.`,
-                    `The CSS was probably the hardest part of this for me to do, its probably pretty messy, but you can check`,
+                    `The CSS was probably the hardest part of this for me to do and its probably pretty messy, but you can check`,
                     `out the whole project on Github here: <a href='https://github.com/OLIVER427/Switch-Menu-Web' target='0'>https://github.com/OLIVER427/Switch-Menu-Web</a>`,
+                    `I think I need to become better at making things on my own, rather than trying to make accurate recreations of things.`,
+                    `Making the recreations is really fun for me, but I think I should start being more creative with my projects.`
                 ]
                 command(lines)
                 break;
-            case "learn terminal-website":
+            case "learn webterminal":
                 lines = [
-                    `The website you are looking at right now! This website was created as a sort of portfolio as my "Personal Project"`,
-                    `for English class. I am still very early into creating this website as I am writing this, but it has been fun so far!`,
-                    `It was challenging to make this terminal at all, and I'm surprised I was even able to do it (considering how messy`,
-                    `this code is). If you want to see how this was made, its up on Github at <a href='https://github.com/OLIVER427/oliver427.github.io' target='_0'>https://github.com/OLIVER427/oliver427.github.io</a>`
+                    `The website you are looking at right now! This website was created as my "Personal Project"`,
+                    `but I'm pretty sure I broke some of the rules in my rubric so that might turn out to be a problem`,
+                    `later. One big mistake I made was waiting until the month it was due to start it (I should have started`,
+                    `five months before). If you want to see how this was made, its up on Github at <a href='https://github.com/OLIVER427/oliver427.github.io' target='_0'>https://github.com/OLIVER427/oliver427.github.io</a>`
                 ]
                 command(lines)
                 break;
 
             case "whoami":
-                lines = [
+                lines = [ //why is this an actual command
                     `Well since I cant tell who you are, I have no idea. your... uhhhh, you? yeah that sounds about right.`,
-                    `actually it says that your name is "usr" but that doesnt sound very human to me.`
+                    `actually it says that your name is "usr" but that doesnt sound very human to me so idk.`
+                ]
+                command(lines)
+                break;
+
+            case "iamapersonwhocannotfigureouthowtouseaterminalbecauseionlyusewindowspleasehelpme":
+                lines = [ // :sob:
+                    `uhhh... not sure how to help you there. you just type in the commands and the commands do stuff`
                 ]
                 command(lines)
                 break;
 
             case "ls":
             case "cd":
-                lines = [
-                    `The command "` + prevCommand + `" has not been implemented yet.`
+                lines = [ // this one is for commands that people know exist, and that I will never add.
+                    `The command "` + prevCommand + `" has not been implemented yet.`,
+                    //`Thank you for your patience.`
                 ]
                 command(lines)
                 break;
@@ -254,8 +271,8 @@ document.addEventListener('keydown', (event) => {
                 break;
 
             default:
-                if (prevCommand.length > 74) {
-                    prevCommand = prevCommand.substring(0, 75) + "&#8230 "
+                if (prevCommand.length > 74) { // this cuts down the command in the output if its too long 
+                    prevCommand = prevCommand.substring(0, 75) + "&#8230 " // " &#8230 " is the unicode thingie for the "…" character since it cant just be typed in
                 }
                 lines = [
                     window.location.pathname + `: ` + prevCommand + `: command not found`
