@@ -14,6 +14,14 @@ setTimeout(() => {
     console.log("Hi there! ignore the 'cant access property innerHTML' errors, those are just gonna have to be there.")
 }, 1000);
 
+if (document.cookie.includes("theme=dark")) {
+    document.getElementById("html").style.filter = ""
+} else if (document.cookie.includes("theme=light")) {
+    document.getElementById("html").style.filter = "hue-rotate(90deg) invert(100%) saturate(500%)"
+} else if (document.cookie.includes("theme=sepia")) {
+    document.getElementById("html").style.filter = "hue-rotate(90deg) saturate(100%) sepia(2000%)"
+}
+
 let startText = [
     "    ",
     "    ",
@@ -85,12 +93,6 @@ document.addEventListener('keydown', (event) => {
         switch (prevCommand.replaceAll("&nbsp;", " ").replaceAll("<br>", "").trim()) {
             case "help": //help for list of commands
                 lines = [
-                    `newgrounds`,
-                    `   I put music on Newgrounds sometimes, this links you there.`,
-                    ` `,
-                    `youtube`,
-                    `   I upload content on YouTube a little, this links you to my channel.`,
-                    ` `,
                     `history`,
                     `   run 'history display' to display command history`,
                     // `   run 'history clear' to clear command history`,
@@ -98,8 +100,14 @@ document.addEventListener('keydown', (event) => {
                     `learn [project_name/creation_name]`,
                     `   run 'learn list' for list of projects and other things`,
                     ` `,
+                    `newgrounds`,
+                    `   I put music on Newgrounds sometimes, this links you there.`,
+                    ` `,
                     `theme [theme_name]`,
                     `   run 'theme list' for list of color themes`,
+                    ` `,
+                    `youtube`,
+                    `   I upload content on YouTube a little, this links you to my channel.`,
                     ` `,
                     //`iamapersonwhocannotfigureouthowtouseaterminalbecauseionlyusewindowspleasehelpme`,
                     //`   um...`
@@ -154,6 +162,7 @@ document.addEventListener('keydown', (event) => {
 
             case "theme dark":
                 document.getElementById("html").style.filter = ""
+                document.cookie = "theme=dark; expires= Wed,01 Jan, 3000 12:00:00 UTC; path=/; SameSite=none; Secure";
                 lines = [
                     `Theme has been successfully set to 'Dark'`
                 ]
@@ -161,6 +170,7 @@ document.addEventListener('keydown', (event) => {
                 break;
             case "theme light":
                 document.getElementById("html").style.filter = "hue-rotate(90deg) invert(100%) saturate(500%)"
+                document.cookie = "theme=light; expires= Wed,01 Jan, 3000 12:00:00 UTC; path=/; SameSite=none; Secure";
                 lines = [
                     `Theme has been successfully set to 'Light'`
                 ]
@@ -168,6 +178,7 @@ document.addEventListener('keydown', (event) => {
                 break;
             case "theme sepia":
                 document.getElementById("html").style.filter = "hue-rotate(90deg) saturate(100%) sepia(2000%)"
+                document.cookie = "theme=sepia; expires= Wed,01 Jan, 3000 12:00:00 UTC; path=/; SameSite=none; Secure";
                 lines = [
                     `Theme has been successfully set to 'Sepia'`
                 ]
