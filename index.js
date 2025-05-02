@@ -187,8 +187,7 @@ document.addEventListener('keydown', (event) => {
             case "gay":
                 lines = [
                     `Theme has been successfully set to 'Super epic rainbow cool awesome theme'`,
-                    `[WARNING]: This feature is EXPERIMENTAL and will not persist beyond page reload`,
-                    // `<span style="font-size:5.13vw">DEAN, WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</span>`
+                    `[WARNING]: This feature is EXPERIMENTAL and will not persist beyond page reload`
                 ]
                 document.getElementById("outputCon").style.color = "lime"
                 mode = "rainbow"
@@ -209,6 +208,16 @@ document.addEventListener('keydown', (event) => {
                     "    - levelloader2",
                     "    - switchmenu",
                     "    - webterminal",
+                    "    - musicplayer"
+                ]
+                command(lines)
+                break;
+            case "learn musicplayer":
+                lines = [
+                    `The music player was created because I got tired of not having a Nintendo Music version`,
+                    `for desktop computers. not much else to say about it. It is available for Firefox, Chromium based`,
+                    `browsers, and TECHNICALLY safari, but like dont zoom in otherwise it breaks. You can view it`,
+                    `on Github here: <a href='https://github.com/OLIVER427/music-player' target='0'>https://github.com/OLIVER427/music-player</a>`
                 ]
                 command(lines)
                 break;
