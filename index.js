@@ -208,16 +208,16 @@ document.addEventListener('keydown', (event) => {
                     "    - levelloader2",
                     "    - switchmenu",
                     "    - webterminal",
-                    "    - musicplayer"
+                    "    - soundtrackplayer"
                 ]
                 command(lines)
                 break;
-            case "learn musicplayer":
+            case "learn soundtrackplayer":
                 lines = [
-                    `The music player was created because I got tired of not having a Nintendo Music version`,
+                    `The soundtrack player was created because I got tired of not having a Nintendo Music version`,
                     `for desktop computers. not much else to say about it. It is available for Firefox, Chromium based`,
                     `browsers, and TECHNICALLY safari, but like dont zoom in otherwise it breaks. You can view it`,
-                    `on Github here: <a href='https://github.com/OLIVER427/music-player' target='0'>https://github.com/OLIVER427/music-player</a>`
+                    `on Github here: <a href='https://github.com/OLIVER427/soundtrack-player' target='0'>https://github.com/OLIVER427/soundtrack-player</a>`
                 ]
                 command(lines)
                 break;
