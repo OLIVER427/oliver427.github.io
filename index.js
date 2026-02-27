@@ -100,14 +100,14 @@ document.addEventListener('keydown', (event) => {
                     `learn [project_name/creation_name]`,
                     `   run 'learn list' for list of projects and other things`,
                     ` `,
-                    `newgrounds`,
-                    `   I put music on Newgrounds sometimes, this links you there.`,
-                    ` `,
                     `theme [theme_name]`,
                     `   run 'theme list' for list of color themes`,
                     ` `,
                     `youtube`,
-                    `   I upload content on YouTube a little, this links you to my channel.`,
+                    `   I upload music related stuff on YouTube, this links you to my channel.`,
+                    ` `,
+                    `newgrounds`,
+                    `   I put music on Newgrounds sometimes, this links you there.`,
                     ` `,
                     //`iamapersonwhocannotfigureouthowtouseaterminalbecauseionlyusewindowspleasehelpme`,
                     //`   um...`
@@ -117,16 +117,16 @@ document.addEventListener('keydown', (event) => {
 
             case "newgrounds":
                 lines = [
-                    `I usually make chiptune sounding remakes of video game songs, and`,
-                    `you can check them out on my Newgrounds page here! <a href="https://oliver427.newgrounds.com/" target='_0'>https://oliver427.newgrounds.com/</a>`,
+                    `I'm pretty inactive here, but sometimes I post some original songs (mostly just on youtube though).'`,
+                    `you can check them out here: <a href="https://oliver427.newgrounds.com/" target='_0'>https://oliver427.newgrounds.com/</a>`,
                 ]
                 command(lines)
                 break;
 
             case "youtube":
                 lines = [
-                    `I make videos on YouTube sometimes, mostly about Geometry Dash or Minecraft, but other games and unrelated things as well.`,
-                    `I have a lot of fun making those videos, and you can check them out here! <a href="https://www.youtube.com/@OLIVER427" target='_0'>https://www.youtube.com/@OLIVER427</a>`
+                    `I post videos on youtube, mostly music related. A lot of them are covers of songs, but in Super Mario Paint.`,
+                    `I have a lot of fun making those, and you can check them out here: <a href="https://www.youtube.com/@OLIVER427" target='_0'>https://www.youtube.com/@OLIVER427</a>`
                 ]
                 command(lines)
                 break;
@@ -193,7 +193,7 @@ document.addEventListener('keydown', (event) => {
                 mode = "rainbow"
                 command(lines)
                 break;
-                
+
             case "learn": // the beginning of the learn commands
                 lines = [
                     `No project specified.`,
@@ -285,7 +285,7 @@ document.addEventListener('keydown', (event) => {
                 ]
                 command(lines)
                 break;
-            
+
             case "": //nothing here so theres no "command not found" for an empty message
                 document.getElementById("input").scrollIntoView({ behavior: "instant", block: "start" });
                 break;
